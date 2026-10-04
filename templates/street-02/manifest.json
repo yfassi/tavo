@@ -1,0 +1,13 @@
+{
+  "slug": "street-02",
+  "name": "Street Neon",
+  "family": "street",
+  "formats": ["landscape", "portrait"],
+  "loopDurationMs": 30000,
+  "maxItemsPerScreen": 8,
+  "colorVariants": [
+    { "name": "Nuit", "tokens": { "bg": "#0a0a0a", "text": "#e0e0e0", "accent": "#00ff88" } },
+    { "name": "Violet", "tokens": { "bg": "#0f0a1a", "text": "#e0e0e0", "accent": "#bf5af2" } }
+  ],
+  "version": 1
+}
