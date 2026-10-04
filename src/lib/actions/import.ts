@@ -5,6 +5,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { getSession } from '@/lib/auth/get-session'
 import { importMenuFromImage } from '@/lib/ai/menu-import'
 import type { MenuImportResult } from '@/lib/ai/schemas'
+import { getSubscriptionStatus } from '@/lib/stripe/guards'
 
 export async function uploadMenuImage(formData: FormData) {
   const { organization } = await getSession()
@@ -28,6 +29,10 @@ export async function uploadMenuImage(formData: FormData) {
 
 export async function runMenuImport(imageUrl: string) {
   const { organization } = await getSession()
+  const subStatus = await getSubscriptionStatus(organization.id)
+  if (!subStatus.isActive) {
+    throw new Error("Votre abonnement n'est pas actif.")
+  }
   const { jobId, result } = await importMenuFromImage(organization.id, imageUrl)
   return { jobId, result }
 }

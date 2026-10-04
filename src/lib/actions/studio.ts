@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { createServerClient } from '@/lib/supabase/server'
 import { getImageProvider } from '@/lib/images'
 import { getSession } from '@/lib/auth/get-session'
+import { getSubscriptionStatus } from '@/lib/stripe/guards'
 
 export async function uploadPhoto(formData: FormData) {
   const { organization } = await getSession()
@@ -42,6 +43,11 @@ export async function uploadPhoto(formData: FormData) {
 
 export async function processImage(assetId: string, type: 'enhance' | 'remove_bg' | 'scene') {
   const { organization } = await getSession()
+  const subStatus = await getSubscriptionStatus(organization.id)
+  if (!subStatus.isActive) {
+    throw new Error("Votre abonnement n'est pas actif. Veuillez souscrire une offre.")
+  }
+
   const supabase = await createServerClient()
 
   // Check credits

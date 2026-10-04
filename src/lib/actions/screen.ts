@@ -3,12 +3,22 @@
 import { revalidatePath } from 'next/cache'
 import { createServerClient } from '@/lib/supabase/server'
 import crypto from 'crypto'
+import { checkPlanLimit } from '@/lib/stripe/guards'
+import { getSession } from '@/lib/auth/get-session'
 
 export async function createScreen(
   venueId: string,
   name: string,
   orientation: 'landscape' | 'portrait',
 ) {
+  const { organization } = await getSession()
+  const { allowed, current, limit } = await checkPlanLimit(organization.id, 'screens')
+  if (!allowed) {
+    throw new Error(
+      `Limite atteinte : ${current}/${limit} écran${limit > 1 ? 's' : ''} pour votre offre.`,
+    )
+  }
+
   const supabase = await createServerClient()
   const token = crypto.randomUUID()
   const tokenHash = crypto.createHash('sha256').update(token).digest('hex')
