@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { tvHeartbeatLimiter, getClientIp } from '@/lib/rate-limit'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -7,6 +8,12 @@ const supabase = createClient(
 )
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request)
+  const { allowed } = await tvHeartbeatLimiter.check(ip)
+  if (!allowed) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
   const { tokenHash } = await request.json()
 
   if (!tokenHash) {

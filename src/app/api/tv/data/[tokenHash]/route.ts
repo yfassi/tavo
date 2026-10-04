@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { mapMenuToSlotData } from '@/lib/templates/data-mapper'
 import type { MenuWithItems } from '@/lib/queries/menu'
+import { tvDataLimiter, getClientIp } from '@/lib/rate-limit'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,6 +13,12 @@ export async function GET(
   _request: Request,
   { params }: { params: Promise<{ tokenHash: string }> },
 ) {
+  const ip = getClientIp(_request)
+  const { allowed } = await tvDataLimiter.check(ip)
+  if (!allowed) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
   const { tokenHash } = await params
 
   // Find screen by token hash
