@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/pair-agent/SKILL.md

@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/design-html/sections/detector-install-offer.md

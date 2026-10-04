@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/office-hours/sections/phase-2b-builder-brainstorm.md

@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/land-and-deploy/sections/first-run-validation.md

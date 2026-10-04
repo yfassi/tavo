@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/design-consultation/sections/proposal-and-preview.md

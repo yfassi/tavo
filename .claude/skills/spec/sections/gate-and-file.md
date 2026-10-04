@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/spec/sections/gate-and-file.md

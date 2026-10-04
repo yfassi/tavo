@@ -1,0 +1,1 @@
+/Users/Yassine/conductor/repos/tavo/.claude/skills/gstack/browse/PLAN-snapshot-dropdown-interactive.md

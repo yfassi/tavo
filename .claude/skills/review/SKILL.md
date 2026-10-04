@@ -1,0 +1,1 @@
+/Users/Yassine/.gstack/render/installs/claude-301538934/review/SKILL.md
