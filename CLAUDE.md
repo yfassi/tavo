@@ -36,11 +36,15 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - `src/app/api/` — API routes (webhooks, AI, images, TV)
 - `src/lib/types/` — Shared TypeScript types (menu, brand, template)
 - `src/lib/ai/` — Anthropic client, cost guard, menu import, Zod schemas
-- `src/lib/actions/` — Server actions (menu, brand, screen, studio, import, generate-image, schedule)
+- `src/lib/actions/` — Server actions (menu, brand, screen, studio, import, generate-image, schedule, gdpr)
 - `src/lib/queries/` — Data queries (menu, brand, screen, studio, schedule)
 - `src/lib/templates/` — Template registry and data mapper
 - `src/lib/images/` — ImageProvider abstraction (mock + stability)
 - `src/lib/stripe/` — Stripe client, plan limits (PLAN_LIMITS), subscription guards
+- `src/lib/rate-limit.ts` — In-memory rate limiter for public endpoints
+- `src/lib/actions/gdpr.ts` — Data export and account deletion
+- `src/app/legal/` — Privacy policy and legal pages
+- `docs/DEPLOYMENT.md` — Full deployment guide
 - `src/lib/format.ts` — Price formatting (`formatPrice`, `formatPriceRaw`)
 - `src/lib/queries/admin.ts` — Admin queries (service-role, bypasses RLS)
 - `src/lib/` — Shared logic (supabase, ai)
@@ -76,6 +80,8 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - AI menu import: photo/PDF → Claude vision → Zod-validated JSON → review screen → confirm
 - Stripe webhook requires `STRIPE_WEBHOOK_SECRET` for signature verification
 - Plan limits enforced on: screen creation, image processing, AI import
+- Rate limiting applied on public API endpoints via `src/lib/rate-limit.ts` (in-memory, per-IP)
+- E2E tests in `tests/e2e/` require `pnpm test:e2e` with a running server
 - Admin role set directly in DB (`memberships.role = 'admin'`), shown in sidebar conditionally
 - Prices configured in Stripe Dashboard — code only knows plan slugs and their limits
 

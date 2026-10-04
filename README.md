@@ -62,6 +62,10 @@ Données de démo (restaurant fictif "Chez Rosalie") :
 npx supabase db reset --linked
 ```
 
+## Déploiement
+
+Voir [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) pour le guide complet de déploiement (Supabase, Stripe, Vercel).
+
 ## Licence
 
 Propriétaire — Tous droits réservés.
