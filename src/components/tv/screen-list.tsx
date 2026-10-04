@@ -1,6 +1,7 @@
 'use client'
 
 import { useTransition } from 'react'
+import Link from 'next/link'
 import { deleteScreen } from '@/lib/actions/screen'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -35,38 +36,41 @@ export function ScreenList({ screens, now }: { screens: ScreenData[]; now: numbe
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {screens.map((screen, i) => (
-        <Card key={screen.id} className={isPending ? 'opacity-50' : ''}>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-base flex items-center gap-2">
-              <Monitor className="h-4 w-4" />
-              {screen.name}
-            </CardTitle>
-            <Badge variant={statuses[i] === 'online' ? 'default' : 'secondary'}>
-              {statuses[i] === 'online'
-                ? 'En ligne'
-                : statuses[i] === 'offline'
-                  ? 'Hors ligne'
-                  : 'Jamais connecté'}
-            </Badge>
-          </CardHeader>
-          <CardContent className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">
-              {screen.orientation === 'landscape' ? 'Paysage 16:9' : 'Portrait 9:16'}
-            </span>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-destructive"
-              onClick={() => {
-                if (confirm('Supprimer cet écran ?')) {
-                  startTransition(() => deleteScreen(screen.id))
-                }
-              }}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </CardContent>
-        </Card>
+        <Link key={screen.id} href={`/tv/${screen.id}`} className="block">
+          <Card className={isPending ? 'opacity-50' : ''}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-base flex items-center gap-2">
+                <Monitor className="h-4 w-4" />
+                {screen.name}
+              </CardTitle>
+              <Badge variant={statuses[i] === 'online' ? 'default' : 'secondary'}>
+                {statuses[i] === 'online'
+                  ? 'En ligne'
+                  : statuses[i] === 'offline'
+                    ? 'Hors ligne'
+                    : 'Jamais connecté'}
+              </Badge>
+            </CardHeader>
+            <CardContent className="flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">
+                {screen.orientation === 'landscape' ? 'Paysage 16:9' : 'Portrait 9:16'}
+              </span>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-destructive"
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (confirm('Supprimer cet écran ?')) {
+                    startTransition(() => deleteScreen(screen.id))
+                  }
+                }}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </CardContent>
+          </Card>
+        </Link>
       ))}
     </div>
   )
