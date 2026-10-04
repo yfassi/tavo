@@ -43,4 +43,14 @@ export class MockProvider implements ImageProvider {
       height: 600,
     }
   }
+
+  async generateFromDescription(prompt: string): Promise<ProcessedImage> {
+    await delay(2000)
+    return {
+      buffer: createMockImage(800, 600, `Generated: ${prompt.slice(0, 20)}`),
+      mimeType: 'image/jpeg',
+      width: 800,
+      height: 600,
+    }
+  }
 }

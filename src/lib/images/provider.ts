@@ -15,4 +15,5 @@ export interface ImageProvider {
   removeBackground(input: Buffer): Promise<ProcessedImage>
   enhance(input: Buffer): Promise<ProcessedImage>
   replaceScene(input: Buffer, params: SceneParams): Promise<ProcessedImage>
+  generateFromDescription(prompt: string): Promise<ProcessedImage>
 }

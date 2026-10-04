@@ -62,4 +62,24 @@ export class StabilityProvider implements ImageProvider {
     const buffer = Buffer.from(await res.arrayBuffer())
     return { buffer, mimeType: 'image/jpeg', width: 0, height: 0 }
   }
+
+  async generateFromDescription(prompt: string): Promise<ProcessedImage> {
+    const formData = new FormData()
+    formData.append(
+      'prompt',
+      `professional food photography, ${prompt}, appetizing, well-lit, high quality`,
+    )
+    formData.append('output_format', 'jpeg')
+
+    const res = await fetch('https://api.stability.ai/v2beta/stable-image/generate/sd3', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${this.apiKey}`, Accept: 'image/*' },
+      body: formData,
+    })
+
+    if (!res.ok) throw new Error(`Stability API error: ${res.status}`)
+
+    const buffer = Buffer.from(await res.arrayBuffer())
+    return { buffer, mimeType: 'image/jpeg', width: 1024, height: 1024 }
+  }
 }
