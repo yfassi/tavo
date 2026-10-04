@@ -14,7 +14,7 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from '@/components/ui/sidebar'
-import { UtensilsCrossed, Tv, Camera, ImageIcon, Settings } from 'lucide-react'
+import { UtensilsCrossed, Tv, Camera, ImageIcon, Settings, Shield } from 'lucide-react'
 
 const navigation = [
   { name: 'Carte', href: '/carte', icon: UtensilsCrossed },
@@ -24,8 +24,9 @@ const navigation = [
   { name: 'Paramètres', href: '/parametres', icon: Settings },
 ]
 
-export function AppSidebar() {
+export function AppSidebar({ role }: { role?: string }) {
   const pathname = usePathname()
+  const adminNav = role === 'admin' ? [{ name: 'Admin', href: '/admin', icon: Shield }] : []
 
   return (
     <Sidebar>
@@ -53,6 +54,26 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        {adminNav.length > 0 && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Administration</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {adminNav.map((item) => (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton
+                      isActive={pathname.startsWith(item.href)}
+                      render={<Link href={item.href} />}
+                    >
+                      <item.icon />
+                      <span>{item.name}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

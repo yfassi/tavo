@@ -6,12 +6,12 @@ import { getSubscriptionStatus } from '@/lib/stripe/guards'
 import { TrialBanner } from '@/components/parametres/trial-banner'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { user, venue, organization } = await getSession()
+  const { user, role, venue, organization } = await getSession()
   const subStatus = await getSubscriptionStatus(organization.id)
 
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar role={role} />
       <main className="flex-1">
         <header className="flex h-14 items-center justify-between border-b px-4">
           <SidebarTrigger />
