@@ -212,6 +212,14 @@ export default async function MenuPage({ params }: { params: Promise<{ slug: str
           <p>
             Propulsé par <strong>Tavo</strong>
           </p>
+          <p>
+            <a
+              href="/legal/confidentialite"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              Politique de confidentialité
+            </a>
+          </p>
         </footer>
       </main>
     </div>
