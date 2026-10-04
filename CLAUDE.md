@@ -35,8 +35,9 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - `src/app/m/[slug]/` — Public interactive menu
 - `src/app/api/` — API routes (webhooks, AI, images, TV)
 - `src/lib/types/` — Shared TypeScript types (menu, brand, template)
-- `src/lib/actions/` — Server actions (menu, brand, screen, studio)
-- `src/lib/queries/` — Data queries (menu, brand, screen, studio)
+- `src/lib/ai/` — Anthropic client, cost guard, menu import, Zod schemas
+- `src/lib/actions/` — Server actions (menu, brand, screen, studio, import, generate-image, schedule)
+- `src/lib/queries/` — Data queries (menu, brand, screen, studio, schedule)
 - `src/lib/templates/` — Template registry and data mapper
 - `src/lib/images/` — ImageProvider abstraction (mock + stability)
 - `src/lib/format.ts` — Price formatting (`formatPrice`, `formatPriceRaw`)
@@ -67,6 +68,10 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - TV player at `/tv/[token]` uses Supabase Realtime for live updates
 - Interactive menu at `/m/[slug]` uses ISR with 60-second revalidation
 - shadcn/ui uses `@base-ui/react` — use `render` prop, NOT `asChild`
+- AI calls require `ANTHROPIC_API_KEY` env var; cost cap checked before every call (default 500 cents/day/org)
+- AI-generated images always flagged with `ai_generated: true` and labeled "Illustration IA, non contractuelle"
+- 6 templates total: street-01/02/03, bistrot-01/02/03
+- AI menu import: photo/PDF → Claude vision → Zod-validated JSON → review screen → confirm
 
 ## Non-Negotiable Rules
 
