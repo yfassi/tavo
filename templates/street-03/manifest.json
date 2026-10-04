@@ -1,0 +1,13 @@
+{
+  "slug": "street-03",
+  "name": "Street Minimal",
+  "family": "street",
+  "formats": ["landscape", "portrait"],
+  "loopDurationMs": 30000,
+  "maxItemsPerScreen": 8,
+  "colorVariants": [
+    { "name": "Clair", "tokens": { "bg": "#fafafa", "text": "#111111", "accent": "#111111" } },
+    { "name": "Sable", "tokens": { "bg": "#f5efe6", "text": "#2a1f0e", "accent": "#8b6843" } }
+  ],
+  "version": 1
+}

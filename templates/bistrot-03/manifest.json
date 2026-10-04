@@ -1,0 +1,13 @@
+{
+  "slug": "bistrot-03",
+  "name": "Bistrot Marché",
+  "family": "bistrot",
+  "formats": ["landscape", "portrait"],
+  "loopDurationMs": 30000,
+  "maxItemsPerScreen": 8,
+  "colorVariants": [
+    { "name": "Frais", "tokens": { "bg": "#ffffff", "text": "#1a2e1a", "accent": "#2d7d46" } },
+    { "name": "Terroir", "tokens": { "bg": "#f5f0e8", "text": "#1a2e1a", "accent": "#2d7d46" } }
+  ],
+  "version": 1
+}

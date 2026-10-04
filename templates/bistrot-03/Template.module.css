@@ -1,0 +1,115 @@
+.container {
+  container-type: size;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2cqw;
+  padding: 2cqh 4cqw;
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.headerLeaf {
+  width: 2cqw;
+  height: 3cqh;
+  background: rgba(255, 255, 255, 0.4);
+  clip-path: ellipse(50% 100% at 50% 100%);
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 4cqw;
+  height: 4cqw;
+  object-fit: contain;
+}
+
+.venueName {
+  font-size: 3.2cqw;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 3cqw;
+  padding: 2cqh 4cqw;
+  overflow: hidden;
+}
+
+.category {
+  margin-bottom: 1.5cqh;
+  animation: freshIn 0.4s ease-out both;
+}
+
+.categoryName {
+  font-size: 1.5cqw;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: 0.8cqh;
+  padding-bottom: 0.5cqh;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5cqh 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.itemName {
+  font-size: 1.6cqw;
+  font-weight: 400;
+}
+
+.itemPrice {
+  font-size: 1.6cqw;
+  font-weight: 700;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.dailySpecial {
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  padding: 0.4cqh 0.6cqw;
+  border-radius: 0.4cqw;
+  border-left: 0.3cqw solid var(--color-accent);
+}
+
+@keyframes freshIn {
+  from {
+    opacity: 0;
+    transform: translateX(-1cqw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category {
+    animation: none;
+  }
+}

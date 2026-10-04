@@ -1,0 +1,13 @@
+{
+  "slug": "bistrot-02",
+  "name": "Bistrot Élégant",
+  "family": "bistrot",
+  "formats": ["landscape", "portrait"],
+  "loopDurationMs": 30000,
+  "maxItemsPerScreen": 8,
+  "colorVariants": [
+    { "name": "Ivoire", "tokens": { "bg": "#fdf8f0", "text": "#2c1810", "accent": "#8b6843" } },
+    { "name": "Nuit", "tokens": { "bg": "#1a1410", "text": "#f0e8d8", "accent": "#c9a96e" } }
+  ],
+  "version": 1
+}

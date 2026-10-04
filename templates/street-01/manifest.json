@@ -1,0 +1,13 @@
+{
+  "slug": "street-01",
+  "name": "Street Bold",
+  "family": "street",
+  "formats": ["landscape", "portrait"],
+  "loopDurationMs": 30000,
+  "maxItemsPerScreen": 8,
+  "colorVariants": [
+    { "name": "Sombre", "tokens": { "bg": "#1a1a1a", "text": "#ffffff", "accent": "#ff6b35" } },
+    { "name": "Clair", "tokens": { "bg": "#f5f0e8", "text": "#1a1a1a", "accent": "#d4380d" } }
+  ],
+  "version": 1
+}
