@@ -20,18 +20,25 @@ export default async function LoginPage({
       </CardHeader>
       <CardContent className="space-y-6">
         {error === 'invalid_credentials' && (
-          <p className="text-sm text-red-600">Email ou mot de passe incorrect.</p>
+          <p id="login-error" role="alert" className="text-sm text-red-600">
+            Email ou mot de passe incorrect.
+          </p>
         )}
         {error === 'magic_link_failed' && (
-          <p className="text-sm text-red-600">Erreur lors de l&apos;envoi du lien magique.</p>
+          <p id="login-error" role="alert" className="text-sm text-red-600">
+            Erreur lors de l&apos;envoi du lien magique.
+          </p>
         )}
         {message === 'magic_link_sent' && (
-          <p className="text-sm text-green-600">
+          <p id="login-message" role="status" className="text-sm text-green-600">
             Un lien de connexion a été envoyé à votre adresse email.
           </p>
         )}
 
-        <form className="space-y-4">
+        <form
+          className="space-y-4"
+          aria-describedby={error ? 'login-error' : message ? 'login-message' : undefined}
+        >
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" name="email" type="email" required />

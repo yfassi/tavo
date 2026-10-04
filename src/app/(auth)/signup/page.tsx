@@ -20,12 +20,12 @@ export default async function SignupPage({
       </CardHeader>
       <CardContent>
         {error === 'signup_failed' && (
-          <p className="mb-4 text-sm text-red-600">
+          <p id="signup-error" role="alert" className="mb-4 text-sm text-red-600">
             Erreur lors de la création du compte. Vérifiez vos informations.
           </p>
         )}
 
-        <form className="space-y-4">
+        <form className="space-y-4" aria-describedby={error ? 'signup-error' : undefined}>
           <div className="space-y-2">
             <Label htmlFor="venue_name">Nom de l&apos;établissement</Label>
             <Input id="venue_name" name="venue_name" placeholder="Chez Rosalie" required />

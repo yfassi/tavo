@@ -29,7 +29,7 @@ export function AllergenPicker({
   }
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-1.5" role="group" aria-label="Sélection des allergènes">
       {ALLERGENS.map((allergen) => {
         const existing = allergens.find((a) => a.allergen === allergen)
         const isActive = activeAllergens.has(allergen)
@@ -37,6 +37,9 @@ export function AllergenPicker({
         return (
           <Badge
             key={allergen}
+            role="button"
+            aria-pressed={isActive}
+            aria-label={`${ALLERGEN_LABELS[allergen]}${isActive && !existing?.is_confirmed ? ' — à vérifier' : ''}`}
             variant={isActive ? (existing?.is_confirmed ? 'default' : 'secondary') : 'outline'}
             className={`cursor-pointer text-xs ${isPending ? 'opacity-50' : ''} ${
               isActive && !existing?.is_confirmed ? 'border-yellow-500' : ''

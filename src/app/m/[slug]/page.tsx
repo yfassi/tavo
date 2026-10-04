@@ -84,6 +84,13 @@ export default async function MenuPage({ params }: { params: Promise<{ slug: str
         background: '#fafafa',
       }}
     >
+      <a
+        href="#menu-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-2 focus:text-black"
+      >
+        Aller au contenu du menu
+      </a>
+
       {/* Header */}
       <header
         className="sticky top-0 z-10 px-4 py-4 text-white"
@@ -103,7 +110,7 @@ export default async function MenuPage({ params }: { params: Promise<{ slug: str
         </div>
       </header>
 
-      <main className="mx-auto max-w-lg px-4 py-6 space-y-4">
+      <main id="menu-content" className="mx-auto max-w-lg px-4 py-6 space-y-4">
         {/* Daily special */}
         {items
           ?.filter((i) => i.is_daily_special)
