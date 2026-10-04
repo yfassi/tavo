@@ -34,9 +34,19 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - `src/app/tv/[token]/` — Public TV player
 - `src/app/m/[slug]/` — Public interactive menu
 - `src/app/api/` — API routes (webhooks, AI, images, TV)
-- `src/lib/` — Shared logic (supabase, stripe, ai, images, templates)
+- `src/lib/types/` — Shared TypeScript types (menu, brand, template)
+- `src/lib/actions/` — Server actions (menu, brand, screen, studio)
+- `src/lib/queries/` — Data queries (menu, brand, screen, studio)
+- `src/lib/templates/` — Template registry and data mapper
+- `src/lib/images/` — ImageProvider abstraction (mock + stability)
+- `src/lib/format.ts` — Price formatting (`formatPrice`, `formatPriceRaw`)
+- `src/lib/` — Shared logic (supabase, stripe, ai)
 - `src/components/ui/` — shadcn/ui primitives
-- `src/components/` — Feature components (carte, templates, studio, tv)
+- `src/components/carte/` — Menu editor components
+- `src/components/tv/` — TV player and screen management
+- `src/components/studio/` — Photo studio components
+- `src/components/parametres/` — Brand kit and QR code
+- `src/components/templates/` — Template renderer
 - `templates/` — Template definitions (manifest, schema, component, CSS)
 - `supabase/migrations/` — SQL migrations (versioned)
 - `supabase/seed.sql` — Demo data (Chez Rosalie)
@@ -52,6 +62,11 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - No API keys or secrets in code — use `.env` variables
 - Server actions for mutations, API routes for webhooks and external calls
 - Zod for all external input validation (AI responses, form data, API payloads)
+- `IMAGE_PROVIDER=mock` for local dev (no Stability API key needed)
+- Templates are self-contained in `templates/` with manifest.json, schema.ts, Template.tsx
+- TV player at `/tv/[token]` uses Supabase Realtime for live updates
+- Interactive menu at `/m/[slug]` uses ISR with 60-second revalidation
+- shadcn/ui uses `@base-ui/react` — use `render` prop, NOT `asChild`
 
 ## Non-Negotiable Rules
 
