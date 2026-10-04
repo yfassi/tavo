@@ -36,7 +36,7 @@ export function ScreenList({ screens, now }: { screens: ScreenData[]; now: numbe
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {screens.map((screen, i) => (
-        <Link key={screen.id} href={`/tv/${screen.id}`} className="block">
+        <Link key={screen.id} href={`/ecrans/${screen.id}`} className="block">
           <Card className={isPending ? 'opacity-50' : ''}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-base flex items-center gap-2">
