@@ -40,13 +40,15 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - `src/lib/queries/` — Data queries (menu, brand, screen, studio, schedule)
 - `src/lib/templates/` — Template registry and data mapper
 - `src/lib/images/` — ImageProvider abstraction (mock + stability)
+- `src/lib/stripe/` — Stripe client, plan limits (PLAN_LIMITS), subscription guards
 - `src/lib/format.ts` — Price formatting (`formatPrice`, `formatPriceRaw`)
-- `src/lib/` — Shared logic (supabase, stripe, ai)
+- `src/lib/queries/admin.ts` — Admin queries (service-role, bypasses RLS)
+- `src/lib/` — Shared logic (supabase, ai)
 - `src/components/ui/` — shadcn/ui primitives
 - `src/components/carte/` — Menu editor components
 - `src/components/tv/` — TV player and screen management
 - `src/components/studio/` — Photo studio components
-- `src/components/parametres/` — Brand kit and QR code
+- `src/components/parametres/` — Brand kit, QR code, subscription, trial banner
 - `src/components/templates/` — Template renderer
 - `templates/` — Template definitions (manifest, schema, component, CSS)
 - `supabase/migrations/` — SQL migrations (versioned)
@@ -72,6 +74,10 @@ AI-powered communication assistant for French restaurant owners. Provides TV men
 - AI-generated images always flagged with `ai_generated: true` and labeled "Illustration IA, non contractuelle"
 - 6 templates total: street-01/02/03, bistrot-01/02/03
 - AI menu import: photo/PDF → Claude vision → Zod-validated JSON → review screen → confirm
+- Stripe webhook requires `STRIPE_WEBHOOK_SECRET` for signature verification
+- Plan limits enforced on: screen creation, image processing, AI import
+- Admin role set directly in DB (`memberships.role = 'admin'`), shown in sidebar conditionally
+- Prices configured in Stripe Dashboard — code only knows plan slugs and their limits
 
 ## Non-Negotiable Rules
 
