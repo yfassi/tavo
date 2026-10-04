@@ -1,0 +1,13 @@
+{
+  "slug": "bistrot-01",
+  "name": "Bistrot Ardoise",
+  "family": "bistrot",
+  "formats": ["landscape", "portrait"],
+  "loopDurationMs": 30000,
+  "maxItemsPerScreen": 8,
+  "colorVariants": [
+    { "name": "Ardoise", "tokens": { "bg": "#2d2d2d", "text": "#f5f0e8", "accent": "#c2185b" } },
+    { "name": "Crème", "tokens": { "bg": "#f5f0e8", "text": "#2d2d2d", "accent": "#8b4513" } }
+  ],
+  "version": 1
+}
